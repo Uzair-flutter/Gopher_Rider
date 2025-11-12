@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gophar_rider/screens/chat_list_screen.dart';
 import 'package:gophar_rider/screens/home_screen.dart';
+import 'package:gophar_rider/screens/notification_screen.dart';
 import 'package:gophar_rider/screens/setting_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +12,8 @@ class BottomNavPage extends StatelessWidget {
 
   static const List<Widget> _children = [
     HomeScreen(),
-    ChatListScreen(),
-    ChatListScreen(),
+    Scaffold(body: Center(child: Text('Job Screen'))),
+    NotificationScreen(),
     SettingScreen(),
   ];
 

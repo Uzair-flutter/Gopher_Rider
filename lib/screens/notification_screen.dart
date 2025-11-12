@@ -5,7 +5,6 @@ import 'package:gophar_rider/utils/color_constant.dart';
 import 'package:gophar_rider/widgets/custom_app_bar.dart';
 import 'package:gophar_rider/widgets/notification_recent_tile.dart';
 import 'package:gophar_rider/widgets/notification_tile.dart';
-import 'package:iconsax/iconsax.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -13,7 +12,7 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Notifications"),
+      appBar: CustomAppBar(title: "Notifications", isBackButtonVisible: false),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
 

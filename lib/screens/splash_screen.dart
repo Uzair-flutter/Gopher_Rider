@@ -76,7 +76,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     final width = MediaQuery.widthOf(context);
     return Scaffold(
-      backgroundColor: AppColors.kSecondaryColor,
+      backgroundColor: AppColors.kPrimaryColor,
       body: Container(
         decoration: BoxDecoration(),
         child: Column(

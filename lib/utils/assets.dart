@@ -50,7 +50,6 @@ class SvgAssets {
   static const String services = '${_assets}services.svg';
   static const String chat = '${_assets}chat.svg';
   static const String chatFilled = '${_assets}chatFilled.svg';
-
   static const String profile = '${_assets}profile.svg';
   static const String profileFilled = '${_assets}profile_filled.svg';
   static const String message = '${_assets}message.svg';
@@ -81,6 +80,8 @@ class SvgAssets {
   static const String credit = '${_assets}credit.svg';
   static const String creditCard = '${_assets}credit_card.svg';
   static const String all = '${_assets}all.svg';
+  static const String upload = '${_assets}upload.svg';
+  static const String bellFilled = '${_assets}bell_filled.svg';
 }
 
 class LottieAssets {

@@ -12,176 +12,230 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kPrimaryColor,
-      // appBar: CustomAppBar(title: "Log in", isBackButtonVisible: false),
-      body: SingleChildScrollView(
-        child: Column(
+      //backgroundColor: AppColors.kPrimaryColor,
+      body: SafeArea(
+        top: false,
+        child: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(color: AppColors.kPrimaryColor),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 50.h),
-                  Center(
-                    child: Image.asset(
-                      PngAssets.logo,
-                      height: 80.w,
-                      width: 80.w,
-                    ),
+            // Background colored container
+            Positioned.fill(child: Container(color: AppColors.kPrimaryColor)),
+
+            // White container at bottom
+            Positioned.fill(
+              top: 600.h,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.r),
+                    topRight: Radius.circular(10.r),
                   ),
-                  SizedBox(height: 15.h),
-                  Text(
-                    'Welcome Back',
-                    style: TextStyle(
-                      color: Colors.white,
-                      height: 0,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
-                  Text(
-                    textAlign: TextAlign.center,
-                    "Log in to access your account \nand explore our services",
-                    maxLines: 2,
-                    style: TextStyle(
-                      height: 0,
-                      fontSize: 14.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  SizedBox(height: 30.h),
-                ],
+                ),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Email Address",
-                    style: TextStyle(
-                      height: 0,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  TextFormField(
-                    decoration: InputDecoration(hintText: "Enter your email"),
-                  ),
-                  SizedBox(height: 18.h),
-                  Text(
-                    "Enter Password",
-                    style: TextStyle(
-                      height: 0,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  TextFormField(
-                    obscureText: true,
-                    obscuringCharacter: "*",
-                    decoration: InputDecoration(
-                      hintText: "Enter your password",
-                      suffixIcon: Icon(Iconsax.eye, color: Colors.grey),
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                        height: 0,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.kPrimaryColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, bottomNavPage);
-                      },
-                      child: Text("Log in", style: TextStyle(height: 0)),
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Center(
-                    child: Text(
-                      "or",
-                      style: TextStyle(
-                        height: 0,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  socialLogin(
-                    type: "Continue with Apple",
-                    logo: SvgAssets.apple,
-                  ),
-                  SizedBox(height: 12.h),
-                  socialLogin(
-                    type: "Continue with Google",
-                    logo: SvgAssets.google,
-                  ),
-                  SizedBox(height: 12.h),
-                  socialLogin(
-                    type: "Continue with Facebook",
-                    logo: SvgAssets.facebook,
-                  ),
 
-                  SizedBox(height: 30.h),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don’t have an account?",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          height: 0,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(width: 8.w),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, createNewAccountScreen);
-                        },
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.kSecondaryColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 40.h),
-                ],
+            // Scrollable content
+            SingleChildScrollView(
+              child: Column(
+                children: [_buildHeader(), _buildLoginForm(context)],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Container(
+      height: 280.h,
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(PngAssets.logo, height: 80.w, width: 80.w),
+          SizedBox(height: 15.h),
+          Text(
+            'Welcome Back',
+            style: TextStyle(
+              color: Colors.white,
+              height: 0,
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          SizedBox(height: 15.h),
+          Text(
+            textAlign: TextAlign.center,
+            "Log in to access your account \nand explore our services",
+            maxLines: 2,
+            style: TextStyle(
+              height: 0,
+              fontSize: 14.sp,
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLoginForm(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.r),
+          topRight: Radius.circular(10.r),
+        ),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildEmailField(),
+          SizedBox(height: 16.h),
+          _buildPasswordField(),
+          SizedBox(height: 10.h),
+          _buildForgotPassword(),
+          SizedBox(height: 20.h),
+          _buildLoginButton(context),
+          SizedBox(height: 20.h),
+          _buildDivider(),
+          SizedBox(height: 20.h),
+          _buildSocialLogins(),
+          SizedBox(height: 25.h),
+          _buildSignUpLink(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmailField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Email Address",
+          style: TextStyle(
+            height: 0,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(height: 10.h),
+        TextFormField(
+          decoration: InputDecoration(hintText: "Enter your email"),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPasswordField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Enter Password",
+          style: TextStyle(
+            height: 0,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(height: 10.h),
+        TextFormField(
+          obscureText: true,
+          obscuringCharacter: "*",
+          decoration: InputDecoration(
+            hintText: "Enter your password",
+            suffixIcon: Icon(Iconsax.eye, color: Colors.grey),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildForgotPassword() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Text(
+        "Forgot Password?",
+        style: TextStyle(
+          height: 0,
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w500,
+          color: AppColors.kPrimaryColor,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoginButton(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamed(context, bottomNavPage);
+        },
+        child: Text("Log in", style: TextStyle(height: 0)),
+      ),
+    );
+  }
+
+  Widget _buildDivider() {
+    return Center(
+      child: Text(
+        "or",
+        style: TextStyle(
+          height: 0,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSocialLogins() {
+    return Column(
+      children: [
+        socialLogin(type: "Continue with Apple", logo: SvgAssets.apple),
+        SizedBox(height: 10.h),
+        socialLogin(type: "Continue with Google", logo: SvgAssets.google),
+        SizedBox(height: 10.h),
+        socialLogin(type: "Continue with Facebook", logo: SvgAssets.facebook),
+      ],
+    );
+  }
+
+  Widget _buildSignUpLink(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Don't have an account?",
+          style: TextStyle(
+            fontSize: 16.sp,
+            height: 0,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        SizedBox(width: 8.w),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, createNewAccountScreen);
+          },
+          child: Text(
+            "Sign Up",
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.kSecondaryColor,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

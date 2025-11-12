@@ -55,6 +55,7 @@ class AppTheme {
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          minimumSize: Size(double.infinity, 50.h),
           textStyle: TextStyle(
             height: 0,
             fontSize: 15.sp,
@@ -62,7 +63,7 @@ class AppTheme {
           ),
           backgroundColor: AppColors.kPrimaryColor,
           foregroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 19.5.h),
+          // padding: EdgeInsets.symmetric(vertical: 19.5.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.r),
           ),

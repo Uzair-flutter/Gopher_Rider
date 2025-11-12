@@ -24,8 +24,8 @@ class BottomNavBar extends StatelessWidget {
     ),
     BottomNavItem(
       label: 'Chat',
-      selectedIcon: SvgAssets.chatFilled,
-      unselectedIcon: SvgAssets.chat,
+      selectedIcon: SvgAssets.bellFilled,
+      unselectedIcon: SvgAssets.bell,
     ),
     BottomNavItem(
       label: 'Profile',
@@ -59,7 +59,6 @@ class BottomNavBar extends StatelessWidget {
                     index: 1,
                     isSelected: currentPage == 1,
                   ),
-                  SizedBox(width: 40.w),
                   _buildNavBarItem(
                     context: context,
                     item: _items[2],

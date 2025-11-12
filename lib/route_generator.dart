@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gophar_rider/screens/add_your_email_screen.dart';
-import 'package:gophar_rider/screens/all_gopher_screen.dart';
-import 'package:gophar_rider/screens/all_reviews_screen.dart';
 import 'package:gophar_rider/screens/booking_review_screen.dart';
 import 'package:gophar_rider/screens/change_password_screen.dart';
 import 'package:gophar_rider/screens/chat_list_screen.dart';
@@ -14,9 +12,9 @@ import 'package:gophar_rider/screens/e_receipt_screen.dart';
 import 'package:gophar_rider/screens/edit_profile_screen.dart';
 import 'package:gophar_rider/screens/faqs_screen.dart';
 import 'package:gophar_rider/screens/home_screen.dart';
-import 'package:gophar_rider/screens/job_detail_screen.dart';
 import 'package:gophar_rider/screens/lanuch_screen.dart';
 import 'package:gophar_rider/screens/login_screen.dart';
+import 'package:gophar_rider/screens/new_account_onboarding_screen.dart';
 import 'package:gophar_rider/screens/notification_screen.dart';
 import 'package:gophar_rider/screens/privacy_policy_screen.dart';
 import 'package:gophar_rider/screens/rating_screen.dart';
@@ -26,8 +24,6 @@ import 'package:gophar_rider/screens/ride_detail_screen.dart';
 import 'package:gophar_rider/screens/search_for_rider_screen.dart';
 import 'package:gophar_rider/screens/select_gopher_screen.dart';
 import 'package:gophar_rider/screens/select_service_screen.dart';
-import 'package:gophar_rider/screens/service_booking_screen.dart';
-import 'package:gophar_rider/screens/service_completed_screen.dart';
 import 'package:gophar_rider/screens/splash_screen.dart';
 import 'package:gophar_rider/screens/successfully_created_screen.dart';
 import 'package:gophar_rider/screens/terms_and_condition_screen.dart';
@@ -74,6 +70,7 @@ const String bookingReviewScreen = '/booking_review_screen';
 const String serviceCompletedScreen = '/service_completed_screen';
 const String ratingScreen = '/rating_screen';
 const String walletScreen = '/wallet_screen';
+const String newAccountOnboardingScreen = '/New_Account_Onboarding_Screen';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -159,27 +156,27 @@ class RouteGenerator {
           builder: (_) => ChangePasswordScreen(),
           settings: RouteSettings(name: changePasswordScreen),
         );
-      case jobsDetailScreen:
-        return MaterialPageRoute(
-          builder: (_) => JobDetailScreen(),
-          settings: RouteSettings(name: jobsDetailScreen),
-        );
+      // case jobsDetailScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_) => JobDetailScreen(),
+      //     settings: RouteSettings(name: jobsDetailScreen),
+      //   );
 
-      case allGopherScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: allGopherScreen),
-          builder: (_) => const AllGopherScreen(),
-        );
-      case allReviewsScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: allReviewsScreen),
-          builder: (_) => const AllReviewsScreen(),
-        );
-      case serviceBookingScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: serviceBookingScreen),
-          builder: (_) => const ServiceBookingScreen(),
-        );
+      // case allGopherScreen:
+      //   return MaterialPageRoute(
+      //     settings: RouteSettings(name: allGopherScreen),
+      //     builder: (_) => const AllGopherScreen(),
+      //   );
+      // case allReviewsScreen:
+      //   return MaterialPageRoute(
+      //     settings: RouteSettings(name: allReviewsScreen),
+      //     builder: (_) => const AllReviewsScreen(),
+      //   );
+      // case serviceBookingScreen:
+      //   return MaterialPageRoute(
+      //     settings: RouteSettings(name: serviceBookingScreen),
+      //     builder: (_) => const ServiceBookingScreen(),
+      //   );
       case contactUsScreen:
         return MaterialPageRoute(
           settings: RouteSettings(name: contactUsScreen),
@@ -240,16 +237,21 @@ class RouteGenerator {
           settings: RouteSettings(name: bookingReviewScreen),
           builder: (_) => const BookingReviewScreen(),
         );
+      case newAccountOnboardingScreen:
+        return MaterialPageRoute(
+          settings: RouteSettings(name: newAccountOnboardingScreen),
+          builder: (_) => const NewAccountOnboardingScreen(),
+        );
       // case allServicesScreen:
       //   return MaterialPageRoute(
       //     settings: RouteSettings(name: allServicesScreen),
       //     builder: (_) => ServiceScreen(),
       //   );
-      case serviceCompletedScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: serviceCompletedScreen),
-          builder: (_) => const ServiceCompletedScreen(),
-        );
+      // case serviceCompletedScreen:
+      //   return MaterialPageRoute(
+      //     settings: RouteSettings(name: serviceCompletedScreen),
+      //     builder: (_) => const ServiceCompletedScreen(),
+      //   );
       case ratingScreen:
         return MaterialPageRoute(
           settings: RouteSettings(name: ratingScreen),

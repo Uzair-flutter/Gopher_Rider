@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gophar_rider/route_generator.dart';
-import 'package:gophar_rider/utils/assets.dart';
 import 'package:gophar_rider/utils/color_constant.dart';
+import 'package:gophar_rider/utils/string_utils.dart';
 import 'package:gophar_rider/widgets/custom_app_bar.dart';
+import 'package:provider/provider.dart';
+
+import '../utils/enums.dart';
+import '../view_models/service_view_model.dart';
 
 class CreateNewAccountScreen extends StatelessWidget {
   const CreateNewAccountScreen({super.key});
@@ -12,111 +16,81 @@ class CreateNewAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Create New Account',
-        isBackButtonVisible: true,
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 17.3.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 24.h),
-            Text(
-              textAlign: TextAlign.center,
-              "Begin with creating new free account. This helps you keep your learning way easier.",
-              style: TextStyle(
-                height: 0,
-                color: AppColors.textBlackColor,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            SizedBox(height: 32.h),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, addYourEmailScreen);
-                },
-                child: Text("Continue with email"),
-              ),
-            ),
-            // SizedBox(height: 12.h),
-            // SizedBox(
-            //   width: double.infinity,
-            //   child: OutlinedButton(
-            //     style: OutlinedButton.styleFrom(
-            //       side: BorderSide(
-            //         color: AppColors.kSecondaryColor,
-            //         width: 2.w,
-            //       ),
-            //       padding: EdgeInsets.symmetric(vertical: 19.h),
+      appBar: CustomAppBar(title: ''),
+      body: _buildBody(context),
+    );
+  }
 
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(10.r),
-            //       ),
-            //     ),
-            //     onPressed: () {},
-            //     child: Text(
-            //       "Continue with Phone number",
-            //       style: TextStyle(
-            //         fontSize: 15.sp,
-            //         fontWeight: FontWeight.w600,
-            //         color: AppColors.kSecondaryColor,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            SizedBox(height: 25.h),
-            Text(
-              "or",
-              style: TextStyle(
-                height: 0,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
+  Widget _buildBody(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+        spacing: 24.h,
+        children: [
+          _buildTitle(),
+          SizedBox(height: 45.h),
+          for (final type in GopherType.values)
+            _buildServiceCard(context, type),
+        ],
+      ),
+    );
+  }
+
+  Padding _buildTitle() {
+    return Padding(
+      padding: EdgeInsets.only(top: 24.h),
+      child: Text(
+        'Select Your Role',
+        style: TextStyle(
+          fontSize: 24.sp,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textBlackColor,
+        ),
+      ),
+    );
+  }
+
+  InkWell _buildServiceCard(BuildContext context, GopherType type) {
+    return InkWell(
+      onTap: () {
+        if (type == GopherType.delivery) {
+          context.read<ServiceViewModel>().setGopherType(type);
+          Navigator.pushNamed(context, newAccountOnboardingScreen);
+        } else if (type == GopherType.rider) {
+          context.read<ServiceViewModel>().setGopherType(type);
+          Navigator.pushNamed(context, deliveryFormScreen);
+        }
+      },
+      borderRadius: BorderRadius.circular(10.r),
+      child: Ink(
+        height: 156.h,
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 21.w),
+        decoration: BoxDecoration(
+          color: AppColors.textFieldFillColor,
+          borderRadius: BorderRadius.circular(10.r),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(top: 35.h),
+                child: Text(
+                  type.name.capitalize,
+                  style: TextStyle(
+                    fontSize: 24.sp,
+                    height: 0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
-            SizedBox(height: 25.h),
-            socialLogin(type: "Continue with Apple", logo: SvgAssets.apple),
-            SizedBox(height: 12.h),
-            socialLogin(type: "Continue with Google", logo: SvgAssets.google),
-            SizedBox(height: 12.h),
-            socialLogin(
-              type: "Continue with Facebook",
-              logo: SvgAssets.facebook,
+            Container(
+              alignment: Alignment.bottomCenter,
+              transform: Matrix4.translationValues(0, 15, 0),
+              child: Image.asset(type.asset, height: 138.h, fit: BoxFit.cover),
             ),
-            Spacer(),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Already have an account?",
-                  style: TextStyle(
-                    height: 0,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, loginScreen);
-                  },
-                  child: Text(
-                    "Log in",
-                    style: TextStyle(
-                      height: 0,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.kSecondaryColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 40.h),
           ],
         ),
       ),

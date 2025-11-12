@@ -64,6 +64,8 @@ class _LaunchScreenState extends State<LaunchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double topPadding = MediaQuery.of(context).padding.bottom;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -92,7 +94,6 @@ class _LaunchScreenState extends State<LaunchScreen> {
       // Dark gray background
       body: PageView.builder(
         physics: NeverScrollableScrollPhysics(),
-
         controller: _pageController,
         onPageChanged: _onPageChanged,
         itemCount: _pages.length,
@@ -180,12 +181,15 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     ],
                   ),
                   // CTA Button
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _nextPage,
+                  SafeArea(
+                    top: false,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _nextPage,
 
-                      child: Text(page.buttonText),
+                        child: Text(page.buttonText),
+                      ),
                     ),
                   ),
                 ],

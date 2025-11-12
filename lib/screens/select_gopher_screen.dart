@@ -15,7 +15,7 @@ class SelectGopherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Select Gopher'),
+      appBar: CustomAppBar(title: ''),
       body: _buildBody(context),
     );
   }

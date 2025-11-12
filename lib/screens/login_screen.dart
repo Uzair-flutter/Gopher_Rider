@@ -145,6 +145,7 @@ class LoginScreen extends StatelessWidget {
                     type: "Continue with Facebook",
                     logo: SvgAssets.facebook,
                   ),
+
                   SizedBox(height: 30.h),
                   Row(
                     mainAxisSize: MainAxisSize.max,

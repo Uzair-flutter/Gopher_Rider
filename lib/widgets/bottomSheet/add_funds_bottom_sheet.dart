@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gophar_rider/utils/color_constant.dart';
-import 'package:gophar_rider/widgets/bottomSheet/select_payment_method_bottomsheet.dart';
+
+import '../dialog box/start_ride_dailog_box.dart';
 
 void showAddFundsBottomSheet(BuildContext context) {
-  List<int> amount = [50, 75, 100, 125, 150];
-  int? selectedIndex;
   showModalBottomSheet(
     backgroundColor: Colors.white,
     context: context,
@@ -31,7 +30,7 @@ void showAddFundsBottomSheet(BuildContext context) {
                 children: [
                   Center(
                     child: Text(
-                      "Add Funds",
+                      "Send Your Offer",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20.sp,
@@ -42,26 +41,6 @@ void showAddFundsBottomSheet(BuildContext context) {
 
                   SizedBox(height: 18.h),
                   Divider(color: AppColors.textFieldFillColor, thickness: 2.h),
-                  SizedBox(height: 22.h),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(5, (index) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                          child: amountChip(
-                            amount,
-                            index,
-                            selectedIndex == index,
-                          ),
-                        );
-                      }),
-                    ),
-                  ),
                   SizedBox(height: 20),
 
                   Container(
@@ -77,7 +56,7 @@ void showAddFundsBottomSheet(BuildContext context) {
                       children: [
                         Center(
                           child: Text(
-                            "Enter Custom Amount",
+                            "Enter Amount",
                             style: TextStyle(
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
@@ -153,9 +132,11 @@ void showAddFundsBottomSheet(BuildContext context) {
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context);
-                              selectPaymentMethodBottomSheet(context);
+                              showRideStartDialog(screenContext: context);
+
+                              // selectPaymentMethodBottomSheet(context);
                             },
-                            child: Text("Choose Payment Method"),
+                            child: Text("Send Offer"),
                           ),
                         ),
                       ],

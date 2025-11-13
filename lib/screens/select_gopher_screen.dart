@@ -63,7 +63,7 @@ class SelectGopherScreen extends StatelessWidget {
   InkWell _buildServiceCard(BuildContext context, GopherType type) {
     return InkWell(
       onTap: () {
-        if (type == GopherType.delivery) {
+        if (type == GopherType.professional) {
           context.read<ServiceViewModel>().setGopherType(type);
           Navigator.pushNamed(context, deliveryFormScreen);
         } else if (type == GopherType.rider) {

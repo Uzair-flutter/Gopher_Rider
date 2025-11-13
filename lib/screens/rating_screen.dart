@@ -5,7 +5,6 @@ import 'package:gophar_rider/utils/assets.dart';
 import 'package:gophar_rider/utils/color_constant.dart';
 import 'package:gophar_rider/widgets/bottom_shadow_bar.dart';
 import 'package:gophar_rider/widgets/custom_app_bar.dart';
-import 'package:iconsax/iconsax.dart';
 
 class RatingScreen extends StatelessWidget {
   const RatingScreen({super.key});
@@ -22,7 +21,7 @@ class RatingScreen extends StatelessWidget {
             children: [
               SizedBox(height: 24.h),
               Text(
-                "Rate your Rider",
+                "Rate your Client",
                 style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
               ),
               SizedBox(height: 16.h),
@@ -137,39 +136,42 @@ class RatingScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomShadowBar(
-        child: Row(
-          children: [
-            Expanded(
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 15.h),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AppColors.textFieldFillColor,
-                      width: 2.w,
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: BottomShadowBar(
+          child: Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 15.h),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColors.textFieldFillColor,
+                        width: 2.w,
+                      ),
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: Colors.white,
                     ),
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: Colors.white,
-                  ),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    "Later",
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.textBlackColor,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "Later",
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textBlackColor,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(width: 16.w),
-            Expanded(
-              child: ElevatedButton(onPressed: () {}, child: Text("Submit")),
-            ),
-          ],
+              SizedBox(width: 16.w),
+              Expanded(
+                child: ElevatedButton(onPressed: () {}, child: Text("Submit")),
+              ),
+            ],
+          ),
         ),
       ),
     );

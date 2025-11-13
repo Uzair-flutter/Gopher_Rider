@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gophar_rider/route_generator.dart';
 import 'package:gophar_rider/utils/assets.dart';
 import 'package:gophar_rider/utils/color_constant.dart';
-import 'package:gophar_rider/widgets/dialog%20box/ride_complete_dailog_box.dart';
+import 'package:gophar_rider/widgets/dialog%20box/start_ride_dailog_box.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../widgets/bottomSheet/cancel_booking.dart';
@@ -31,7 +31,7 @@ class RideDetailScreen extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  showRideCompleteDialog(screenContext: context);
+                  showRideStartDialog(screenContext: context);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

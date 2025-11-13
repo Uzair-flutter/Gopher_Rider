@@ -23,7 +23,7 @@ class BottomNavBar extends StatelessWidget {
       unselectedIcon: SvgAssets.jobs,
     ),
     BottomNavItem(
-      label: 'Chat',
+      label: 'Notifications',
       selectedIcon: SvgAssets.bellFilled,
       unselectedIcon: SvgAssets.bell,
     ),

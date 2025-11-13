@@ -10,7 +10,7 @@ enum ServiceType {
 }
 
 enum GopherType {
-  delivery(PngAssets.delivery),
+  professional(PngAssets.professional),
   rider(PngAssets.rider);
 
   final String asset;

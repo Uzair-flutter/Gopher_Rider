@@ -16,7 +16,7 @@ class CreateNewAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: ''),
+      appBar: CustomAppBar(title: 'Select Service'),
       body: _buildBody(context),
     );
   }
@@ -28,9 +28,12 @@ class CreateNewAccountScreen extends StatelessWidget {
         spacing: 24.h,
         children: [
           _buildTitle(),
-          SizedBox(height: 45.h),
-          for (final type in GopherType.values)
-            _buildServiceCard(context, type),
+          _buildServiceCard(
+            context,
+            type: GopherType.professional,
+            name: 'Professional Gopher',
+          ),
+          _buildServiceCard(context, type: GopherType.rider, name: 'Gopher'),
         ],
       ),
     );
@@ -39,26 +42,42 @@ class CreateNewAccountScreen extends StatelessWidget {
   Padding _buildTitle() {
     return Padding(
       padding: EdgeInsets.only(top: 24.h),
-      child: Text(
-        'Select Your Role',
-        style: TextStyle(
-          fontSize: 24.sp,
-          fontWeight: FontWeight.w600,
-          color: AppColors.textBlackColor,
+      child: RichText(
+        text: TextSpan(
+          text: 'Please select the type of service you require ',
+          style: TextStyle(fontSize: 14.sp, color: AppColors.textBlackColor),
+          children: [
+            TextSpan(
+              text: 'Gopher',
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+            ),
+            TextSpan(
+              text: ' or ',
+              style: TextStyle(fontSize: 14.sp),
+            ),
+            TextSpan(
+              text: 'Professional',
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  InkWell _buildServiceCard(BuildContext context, GopherType type) {
+  InkWell _buildServiceCard(
+    BuildContext context, {
+    required GopherType type,
+    required String name,
+  }) {
     return InkWell(
       onTap: () {
-        if (type == GopherType.delivery) {
-          context.read<ServiceViewModel>().setGopherType(type);
-          Navigator.pushNamed(context, newAccountOnboardingScreen);
-        } else if (type == GopherType.rider) {
+        if (type == GopherType.professional) {
           context.read<ServiceViewModel>().setGopherType(type);
           Navigator.pushNamed(context, deliveryFormScreen);
+        } else if (type == GopherType.rider) {
+          context.read<ServiceViewModel>().setGopherType(type);
+          Navigator.pushNamed(context, newAccountOnboardingScreen);
         }
       },
       borderRadius: BorderRadius.circular(10.r),
@@ -77,7 +96,7 @@ class CreateNewAccountScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: 35.h),
                 child: Text(
-                  type.name.capitalize,
+                  name.capitalize,
                   style: TextStyle(
                     fontSize: 24.sp,
                     height: 0,
@@ -88,7 +107,7 @@ class CreateNewAccountScreen extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.bottomCenter,
-              transform: Matrix4.translationValues(0, 15, 0),
+              //transform: Matrix4.translationValues(0, 15, 0),
               child: Image.asset(type.asset, height: 138.h, fit: BoxFit.cover),
             ),
           ],

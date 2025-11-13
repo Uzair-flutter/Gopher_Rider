@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gophar_rider/view_models/address_view%20provider.dart';
+import 'package:gophar_rider/view_models/professional_gopher_view_model.dart';
+import 'package:gophar_rider/view_models/ride_view_model.dart';
 import 'package:provider/provider.dart';
 
 import 'app_init.dart';
@@ -27,6 +29,8 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => BottomNavViewModel()),
         ChangeNotifierProvider(create: (_) => ServiceViewModel()),
         ChangeNotifierProvider(create: (_) => AddressProvider()),
+        ChangeNotifierProvider(create: (_) => RideViewModel()),
+        ChangeNotifierProvider(create: (_) => ProfessionalGopherViewModel()),
       ],
       child: AppInit(),
     ),

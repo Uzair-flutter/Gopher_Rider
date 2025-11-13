@@ -108,10 +108,10 @@ class _LaunchScreenState extends State<NewAccountOnboardingScreen> {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: AppColors.kPrimaryColor,
-                          backgroundColor: Colors.white, // Text color
+                          foregroundColor: AppColors.textBlackColor,
+                          backgroundColor: Color(0xffF6F8F9), // Text color
                           side: BorderSide(
-                            color: AppColors.kPrimaryColor,
+                            color: Color(0xffF6F8F9),
                           ), // Border color
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(

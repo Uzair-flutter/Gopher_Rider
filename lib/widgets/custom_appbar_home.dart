@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../route_generator.dart';
 import '../utils/assets.dart';
 import '../utils/color_constant.dart';
 
@@ -16,7 +14,8 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      forceMaterialTransparency: true,
+      backgroundColor: AppColors.kPrimaryColor,
+      // forceMaterialTransparency: true,
       elevation: 0,
       // backgroundColor: Colors.red,
       automaticallyImplyLeading: false,
@@ -41,12 +40,12 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Text(
-            'Hi Alexander! 👋',
+            'Alexander Daniel',
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 13.sp,
               height: 0,
-              color: AppColors.iconColor,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: 3.5.h),
@@ -56,28 +55,19 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
               GestureDetector(
                 onTap: () {},
                 child: Icon(
-                  Iconsax.location,
-                  color: AppColors.textBlackColor,
+                  Iconsax.star1,
+                  color: Color(0xFFFFC627),
                   size: 18.sp,
                 ),
               ),
               SizedBox(width: 6.w),
               Text(
-                'Detroit',
+                '4.5',
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 15.sp,
                   height: 0,
-                  color: AppColors.textBlackColor,
-                ),
-              ),
-              SizedBox(width: 6.w),
-              GestureDetector(
-                onTap: () {},
-                child: Icon(
-                  Iconsax.arrow_down_1,
-                  color: AppColors.blackColor,
-                  size: 18.sp,
+                  color: Colors.white,
                 ),
               ),
             ],
@@ -103,23 +93,95 @@ class CustomAppBarHome extends StatelessWidget implements PreferredSizeWidget {
         //   ),
         // ),
         SizedBox(width: 10.w),
-        InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, notificationScreen);
-          },
-          child: Container(
-            height: 32.h,
-            width: 35.w,
-            padding: EdgeInsets.all(7.w),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24.r),
-              color: AppColors.appbarBackColor,
-            ),
-            child: SvgPicture.asset(SvgAssets.bell),
-          ),
-        ),
+        CustomSwitch(),
         SizedBox(width: 20.w),
       ],
+    );
+  }
+}
+
+class CustomSwitch extends StatefulWidget {
+  const CustomSwitch({super.key});
+
+  @override
+  _CustomSwitchState createState() => _CustomSwitchState();
+}
+
+class _CustomSwitchState extends State<CustomSwitch> {
+  bool isOnline = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => setState(() {
+        isOnline = !isOnline;
+      }),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: isOnline ? 12.w : 4,
+          right: isOnline ? 4.w : 12.w,
+          top: 4.h,
+          bottom: 4.h,
+        ),
+        decoration: BoxDecoration(
+          color: isOnline ? AppColors.kSecondaryColor : AppColors.textGreyColor,
+          borderRadius: BorderRadius.circular(20.r),
+          border: Border.all(color: Colors.white, width: 1.w),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 6.w,
+          children: [
+            isOnline
+                ? Text(
+                    isOnline ? 'Online' : 'Offline',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+
+                      fontWeight: FontWeight.w600,
+                      height: 0,
+                    ),
+                  )
+                : Container(
+                    width: 20,
+                    height: 20,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                    ),
+                  ),
+            !isOnline
+                ? Text(
+                    isOnline ? 'Online' : 'Offline',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      height: 1,
+                      letterSpacing: -0.20,
+                    ),
+                  )
+                : Container(
+                    width: 20,
+                    height: 20,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                    ),
+                  ),
+          ],
+        ),
+      ),
     );
   }
 }

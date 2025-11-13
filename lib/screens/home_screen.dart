@@ -1,27 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gophar_rider/route_generator.dart';
-import 'package:gophar_rider/utils/color_constant.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/assets.dart';
+import '../utils/color_constant.dart';
+import '../view_models/ride_view_model.dart';
+import '../widgets/bottomSheet/ride_request_bottom_sheet.dart';
 import '../widgets/custom_appbar_home.dart';
-import '../widgets/custom_search_bar.dart';
-import '../widgets/gopher_tile_widget.dart';
-import '../widgets/home_carousel_widget.dart';
-import '../widgets/service_item_widget.dart';
-
-class ServicesData {
-  static final List<ServiceItem> services = [
-    ServiceItem(icon: SvgAssets.appliance, label: 'Appliance'),
-    ServiceItem(icon: SvgAssets.repairing, label: 'Painting'),
-    ServiceItem(icon: SvgAssets.shifting, label: 'Shifting'),
-    ServiceItem(icon: SvgAssets.cleaning, label: 'Cleaning'),
-    ServiceItem(icon: SvgAssets.ac, label: 'AC Clean'),
-    ServiceItem(icon: SvgAssets.massage, label: 'Massage'),
-    ServiceItem(icon: SvgAssets.laundry, label: 'Laundry'),
-    ServiceItem(icon: SvgAssets.beauty, label: 'Beauty'),
-  ];
-}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -30,175 +15,104 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarHome(),
-      body: SingleChildScrollView(
-        child: Column(
+      body: SafeArea(
+        top: false,
+        child: Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: CustomSearchBar(),
-            ),
             // SizedBox(height: 8.h),
-            HomeCarouselWidget(),
-            SizedBox(height: 10.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+            Positioned.fill(child: Container(color: AppColors.kPrimaryColor)),
+
+            // White container at bottom
+            Positioned.fill(
+              top: 200.h,
               child: Container(
-                // height: 158.h,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.r),
-                  //    color: Colors.red,
-                  // image: DecorationImage(
-                  //   image: AssetImage(DummyAssets.map),
-                  //   fit: BoxFit.cover,
-                  // ),
-                ),
-                child: Image.asset(
-                  DummyAssets.map,
-                  fit: BoxFit.cover,
-                  // height: 185.h,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.r),
+                    topRight: Radius.circular(10.r),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 25.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                children: [
-                  Text(
-                    'Our Services',
-                    style: TextStyle(
-                      height: 0,
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
+
+            // Scrollable content
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+
+              children: [
+                //SizedBox(height: 20.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Your Balance',
+                        style: TextStyle(fontSize: 16.sp, color: Colors.white),
+                      ),
+                      Text(
+                        '\$ 12,60.35 ',
+                        style: TextStyle(
+                          fontSize: 35.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  Spacer(),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, allServicesScreen);
-                    },
-                    child: Text(
-                      'View All',
-                      style: TextStyle(
-                        height: 0,
-                        fontSize: 14.sp,
-                        color: AppColors.textBlackColor,
-                        fontWeight: FontWeight.w400,
+                ),
+
+                SizedBox(height: 15.h),
+
+                Container(
+                  width: double.infinity,
+                  // height: 158.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.r),
+                    color: Colors.white,
+                    // image: DecorationImage(
+                    //   image: AssetImage(DummyAssets.map),
+                    //   fit: BoxFit.cover,
+                    // ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 20.w,
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        context.read<RideViewModel>().setRideList();
+                        showRidesRequestSheet(context);
+                      },
+                      child: Image.asset(
+                        DummyAssets.homeMap,
+                        fit: BoxFit.fill,
+                        height: 490.h,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(height: 15.h),
-            // ServicesSection(
-            //   services: [
-            //     ServiceItem(icon: Icons.kitchen, label: 'Appliance'),
-            //     ServiceItem(icon: Icons.format_paint, label: 'Painting'),
-            //     ServiceItem(icon: Icons.local_shipping, label: 'Shifting'),
-            //     ServiceItem(icon: Icons.cleaning_services, label: 'Cleaning'),
-            //     ServiceItem(icon: Icons.ac_unit, label: 'AC Clean'),
-            //     ServiceItem(icon: Icons.spa, label: 'Massage'),
-            //     ServiceItem(
-            //       icon: Icons.local_laundry_service,
-            //       label: 'Laundry',
-            //     ),
-            //     ServiceItem(icon: Icons.face, label: 'Beauty'),
-            //   ],
-            //   onViewAll: () {
-            //     // Navigate to all services page
-            //     print('View All tapped');
-            //   },
-            // ),
-            _buildServicesSection(context),
-            SizedBox(height: 30.h),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20.w),
-            //   child: GopherTile(
-            //     gopher: GopherModel(
-            //       name: 'Christopher Smith',
-            //       imageUrl: DummyAssets.person,
-            //       profession: 'Electrician',
-            //       rating: 4.9,
-            //       services: ['Electric', 'Plumbing', 'Repair'],
-            //       additionalServicesCount: 3,
-            //       pricePerHour: 25,
-            //       isAvailable: true,
-            //       isVerified: true,
-            //     ),
-            //     onTap: () {
-            //       // Navigate to gopher detail page
-            //       print('Gopher tile tapped');
-            //     },
-            //   ),
-            // ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                children: [
-                  Text(
-                    'Top Gopher',
-                    style: TextStyle(
-                      height: 0,
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Spacer(),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, allGopherScreen);
-                    },
-                    child: Text(
-                      'View All',
-                      style: TextStyle(
-                        height: 0,
-                        fontSize: 14.sp,
-                        color: AppColors.textBlackColor,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 15.h),
-            SizedBox(
-              height: 300.h,
-              child: ListView.separated(
-                padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 80.h),
-                itemCount: gophers.length,
-                separatorBuilder: (context, index) => SizedBox(height: 10.h),
-                itemBuilder: (context, index) {
-                  return GopherTile(
-                    gopher: gophers[index],
-                    onTap: () {
-                      // Navigate to detail page
-                    },
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 30.h),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildServicesSection(BuildContext context) {
-    return Wrap(
-      spacing: 15.w,
-      runSpacing: 18.h,
-      children: [
-        for (var service in ServicesData.services)
-          SizedBox(
-            width: (MediaQuery.of(context).size.width - 32.w - 36.w) / 4,
-            child: ServiceItemWidget(service: service),
-          ),
-      ],
-    );
-  }
+  // Widget _buildServicesSection(BuildContext context) {
+  //   return Wrap(
+  //     spacing: 15.w,
+  //     runSpacing: 18.h,
+  //     children: [
+  //       for (var service in ServicesData.services)
+  //         SizedBox(
+  //           width: (MediaQuery.of(context).size.width - 32.w - 36.w) / 4,
+  //           child: ServiceItemWidget(service: service),
+  //         ),
+  //     ],
+  //   );
+  // }
 }

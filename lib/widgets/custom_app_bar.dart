@@ -10,6 +10,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isBackButtonVisible;
   final bool showSearchIcon;
   final String? actionIcon;
+  final Color bgColor;
+  final Color titleClr;
 
   const CustomAppBar({
     super.key,
@@ -17,18 +19,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actionIcon,
     this.isBackButtonVisible = true,
     this.showSearchIcon = false,
+    this.bgColor = Colors.white,
+    this.titleClr = AppColors.textBlackColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      forceMaterialTransparency: true,
-
+      // forceMaterialTransparency: true,
+      backgroundColor: bgColor,
       centerTitle: true,
       title: Text(
         title,
         style: TextStyle(
-          color: AppColors.textBlackColor,
+          color: titleClr,
           fontSize: 20.sp,
           fontWeight: FontWeight.w600,
         ),
@@ -47,10 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             child: actionIcon != null
                 ? SvgPicture.asset(actionIcon!, height: 18.w, width: 18.w)
-                : Icon(
-                  Icons.search_sharp,
-                  color: AppColors.textBlackColor,
-                ),
+                : Icon(Icons.search_sharp, color: AppColors.textBlackColor),
           ),
       ],
       leading: isBackButtonVisible

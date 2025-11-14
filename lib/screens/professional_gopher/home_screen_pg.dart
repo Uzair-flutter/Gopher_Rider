@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../route_generator.dart';
 import '../../utils/assets.dart';
 import '../../utils/color_constant.dart';
 import '../../widgets/custom_appbar_home.dart';
@@ -63,81 +62,84 @@ class HomeScreenPg extends StatelessWidget {
                 ),
 
                 SizedBox(height: 15.h),
-
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 20.w,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.r),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 20.w,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.r),
+                      color: Colors.white,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'New Request',
-                                style: TextStyle(
-                                  fontSize: 19.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.textBlackColor,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'New Request',
+                                    style: TextStyle(
+                                      fontSize: 19.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.textBlackColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: 4.w),
+                                  Container(
+                                    padding: EdgeInsets.all(5.w),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xffF53649),
+                                    ),
+                                    child: Text(
+                                      '4',
+                                      style: TextStyle(
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(width: 4.w),
-                              Container(
-                                padding: EdgeInsets.all(5.w),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0xffF53649),
-                                ),
+                              InkWell(
+                                onTap: () {},
                                 child: Text(
-                                  '4',
+                                  'View All',
                                   style: TextStyle(
-                                    fontSize: 11.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w400,
-                                    color: Colors.white,
+                                    color: AppColors.textBlackColor,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                          InkWell(
+                          SizedBox(height: 14.h),
+                          JobTitle(isUpcoming: true),
+                          SizedBox(height: 14.h),
+                          JobTitle(isUpcoming: true),
+                          SizedBox(height: 20.h),
+
+                          GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, newJobOfferScreen);
+                              // context.read<RideViewModel>().setRideList();
+                              // showRidesRequestSheet(context);
                             },
-                            child: Text(
-                              'View All',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.textBlackColor,
-                              ),
+                            child: Image.asset(
+                              DummyAssets.map,
+                              fit: BoxFit.fill,
+                              height: 220.h,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 14.h),
-                      JobTitle(isUpcoming: true),
-                      SizedBox(height: 14.h),
-                      JobTitle(isUpcoming: true),
-                      GestureDetector(
-                        onTap: () {
-                          // context.read<RideViewModel>().setRideList();
-                          // showRidesRequestSheet(context);
-                        },
-                        child: Image.asset(
-                          DummyAssets.map,
-                          fit: BoxFit.contain,
-                          height: 230.h,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ],

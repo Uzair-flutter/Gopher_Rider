@@ -93,7 +93,7 @@ void showRideStartDialog({required BuildContext screenContext}) {
                 ),
                 SizedBox(height: 20.h),
                 Text(
-                  "The rider has arrived at your location. Kindly take your parcel.",
+                  "The sp has arrived at your location. Kindly take your parcel.",
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,

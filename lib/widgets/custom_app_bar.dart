@@ -27,6 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       // forceMaterialTransparency: true,
+      toolbarHeight: kToolbarHeight.h,
       backgroundColor: bgColor,
       centerTitle: true,
       title: Text(
@@ -87,5 +88,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize =>  Size.fromHeight(kToolbarHeight.h);
 }

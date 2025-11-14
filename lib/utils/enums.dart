@@ -1,17 +1,9 @@
 import 'package:gophar_rider/utils/assets.dart';
 
-enum ServiceType {
-  professional(PngAssets.professional),
-  gopher(PngAssets.gopher);
-
-  final String asset;
-
-  const ServiceType(this.asset);
-}
-
 enum GopherType {
   professional(PngAssets.professional),
-  rider(PngAssets.rider);
+  rider(PngAssets.rider),
+  delivery(PngAssets.rider);
 
   final String asset;
 

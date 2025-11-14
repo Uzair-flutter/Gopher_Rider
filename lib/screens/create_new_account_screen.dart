@@ -28,12 +28,12 @@ class CreateNewAccountScreen extends StatelessWidget {
         spacing: 24.h,
         children: [
           _buildTitle(),
-          _buildServiceCard(
+          _builderviceCard(
             context,
             type: GopherType.professional,
             name: 'Professional Gopher',
           ),
-          _buildServiceCard(context, type: GopherType.rider, name: 'Gopher'),
+          _builderviceCard(context, type: GopherType.rider, name: 'Gopher'),
         ],
       ),
     );
@@ -114,6 +114,72 @@ class CreateNewAccountScreen extends StatelessWidget {
               child: Image.asset(type.asset, height: 138.h, fit: BoxFit.cover),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  InkWell _builderviceCard(
+    BuildContext context, {
+    required GopherType type,
+    required String name,
+  }) {
+    return InkWell(
+      onTap: () {
+        if (type == GopherType.professional) {
+          context.read<ServiceViewModel>().setGopherType(type);
+          print('professional');
+
+          Navigator.pushNamed(context, deliveryFormScreen);
+        } else if (type == GopherType.rider) {
+          context.read<ServiceViewModel>().setGopherType(type);
+          Navigator.pushNamed(context, newAccountOnboardingScreen);
+          print('Rider');
+        }
+      },
+      borderRadius: BorderRadius.circular(10.r),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.r),
+        child: Ink(
+          height: 156.h,
+          width: double.infinity,
+          padding: EdgeInsets.only(
+            left: 21.w,
+            right: type != GopherType.professional ? 0 : 21.w,
+          ),
+
+          decoration: BoxDecoration(
+            color: AppColors.textFieldFillColor,
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 35.h),
+                  child: Text(
+                    type == GopherType.professional
+                        ? "Professional\nGopher"
+                        : name.capitalize,
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      height: 0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Image.asset(
+                  type.asset,
+                  height: 138.h,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

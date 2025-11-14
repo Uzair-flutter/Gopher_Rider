@@ -84,6 +84,7 @@ class SvgAssets {
   static const String upload = '${_assets}upload.svg';
   static const String bellFilled = '${_assets}bell_filled.svg';
   static const String delete = '${_assets}delete.svg';
+  static const String arrowRight = '${_assets}arrow_right.svg';
 }
 
 class LottieAssets {

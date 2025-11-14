@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gophar_rider/screens/add_your_email_screen.dart';
 import 'package:gophar_rider/screens/booking_review_screen.dart';
 import 'package:gophar_rider/screens/change_password_screen.dart';
 import 'package:gophar_rider/screens/chat_list_screen.dart';
@@ -27,7 +26,6 @@ import 'package:gophar_rider/screens/select_gopher_screen.dart';
 import 'package:gophar_rider/screens/splash_screen.dart';
 import 'package:gophar_rider/screens/successfully_created_screen.dart';
 import 'package:gophar_rider/screens/terms_and_condition_screen.dart';
-import 'package:gophar_rider/screens/verify_your_email_screen.dart';
 import 'package:gophar_rider/screens/wallet_screen.dart';
 
 import 'models/ui/image_view.dart';
@@ -41,8 +39,6 @@ const String homeScreen = '/home_screen';
 const String loginScreen = '/login_screen';
 const String launchScreen = '/launch_screen';
 const String createNewAccountScreen = '/create_new_account_screen';
-const String addYourEmailScreen = '/add_your_email_screen';
-const String verifyYourEmailScreen = '/verify_your_email_screen';
 const String createPasswordScreen = '/create_password_screen';
 const String registerYourDetailsScreen = '/register_your_details_screen';
 const String successfullyCreatedScreen = '/successfully_created_screen';
@@ -109,16 +105,7 @@ class RouteGenerator {
           settings: RouteSettings(name: createNewAccountScreen),
           builder: (_) => const CreateNewAccountScreen(),
         );
-      case addYourEmailScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: addYourEmailScreen),
-          builder: (_) => const AddEmailYourScreen(),
-        );
-      case verifyYourEmailScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: verifyYourEmailScreen),
-          builder: (_) => const VerifyYourEmailScreen(),
-        );
+
       case createPasswordScreen:
         return MaterialPageRoute(
           settings: RouteSettings(name: createPasswordScreen),

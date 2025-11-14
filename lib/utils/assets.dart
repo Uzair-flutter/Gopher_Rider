@@ -9,7 +9,7 @@ class PngAssets {
   static const String flower = '${_assets}flower.png';
   static const String professional = '${_assets}professional.png';
   static const String gopher = '${_assets}gopher.png';
-  static const String rider = '${_assets}sp.png';
+  static const String rider = '${_assets}rider.png';
   static const String delivery = '${_assets}delivery.png';
   static const String upto5Kg = '${_assets}upto_5_kg.png';
   static const String upto10Kg = '${_assets}upto_10_kg.png';

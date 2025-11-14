@@ -23,7 +23,7 @@ class AppInit extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Gopher Rider',
+          title: 'Gopher SP',
           initialRoute: splashScreen,
           onGenerateRoute: RouteGenerator.generateRoute,
           // home: WalletTransactionScreen(),

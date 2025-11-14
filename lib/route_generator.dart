@@ -7,7 +7,6 @@ import 'package:gophar_rider/screens/chat_screen.dart';
 import 'package:gophar_rider/screens/contact_us.dart';
 import 'package:gophar_rider/screens/create_new_account_screen.dart';
 import 'package:gophar_rider/screens/create_password_screen.dart';
-import 'package:gophar_rider/screens/delivery_screen.dart';
 import 'package:gophar_rider/screens/e_receipt_screen.dart';
 import 'package:gophar_rider/screens/edit_profile_screen.dart';
 import 'package:gophar_rider/screens/faqs_screen.dart';
@@ -22,11 +21,9 @@ import 'package:gophar_rider/screens/privacy_policy_screen.dart';
 import 'package:gophar_rider/screens/rating_screen.dart';
 import 'package:gophar_rider/screens/register_your_details_screen.dart'
     show RegisterYourDetailsScreen;
-import 'package:gophar_rider/screens/ride_detail_screen.dart';
 import 'package:gophar_rider/screens/rider_start_screen.dart';
 import 'package:gophar_rider/screens/search_for_rider_screen.dart';
 import 'package:gophar_rider/screens/select_gopher_screen.dart';
-import 'package:gophar_rider/screens/select_service_screen.dart';
 import 'package:gophar_rider/screens/splash_screen.dart';
 import 'package:gophar_rider/screens/successfully_created_screen.dart';
 import 'package:gophar_rider/screens/terms_and_condition_screen.dart';
@@ -57,7 +54,7 @@ const String contactUsScreen = '/contact_us_screen';
 const String faqsScreen = '/faqs_screen';
 const String termsAndConditionsScreen = '/terms_and_conditions_screen';
 const String privacyPolicyScreen = '/privacy_policy_screen';
-const String selectServiceScreen = '/select_service_screen';
+// const String selectServiceScreen = '/select_service_screen';
 const String selectGopherScreen = '/select_gopher_screen';
 const String deliveryFormScreen = '/delivery_form_screen';
 const String allReviewsScreen = '/all_reviews_screen';
@@ -65,7 +62,7 @@ const String serviceBookingScreen = '/service_booking_screen';
 const String chatListScreenRoute = '/chat_list_screen';
 const String chatScreen = '/chat_screen';
 const String notificationScreen = '/notification_screen';
-const String deliveryScreen = '/delivery_screen';
+// const String deliveryScreen = '/delivery_screen';
 const String searchForRider = '/search_for_rider';
 const String rideDetailScreen = '/ride_detail_screen';
 const String allServicesScreen = '/all_services_screen';
@@ -138,11 +135,11 @@ class RouteGenerator {
           settings: RouteSettings(name: successfullyCreatedScreen),
           builder: (_) => const SuccessfullyCreatedScreen(),
         );
-      case selectServiceScreen:
-        return MaterialPageRoute(
-          builder: (_) => SelectServiceScreen(),
-          settings: RouteSettings(name: selectServiceScreen),
-        );
+      // case selectServiceScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_) => SelectServiceScreen(),
+      //     settings: RouteSettings(name: selectServiceScreen),
+      //   );
       case selectGopherScreen:
         return MaterialPageRoute(
           builder: (_) => SelectGopherScreen(),
@@ -229,21 +226,21 @@ class RouteGenerator {
           settings: RouteSettings(name: notificationScreen),
           builder: (_) => const NotificationScreen(),
         );
-      case deliveryScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: deliveryScreen),
-          builder: (_) => DeliveryScreen(),
-        );
+      // case deliveryScreen:
+      // return MaterialPageRoute(
+      //   settings: RouteSettings(name: deliveryScreen),
+      //   builder: (_) => DeliveryScreen(),
+      // );
       case searchForRider:
         return MaterialPageRoute(
           settings: RouteSettings(name: searchForRider),
           builder: (_) => const SearchForRider(),
         );
-      case rideDetailScreen:
-        return MaterialPageRoute(
-          settings: RouteSettings(name: rideDetailScreen),
-          builder: (_) => RideDetailScreen(),
-        );
+      // case rideDetailScreen:
+      //   return MaterialPageRoute(
+      //     settings: RouteSettings(name: rideDetailScreen),
+      //     builder: (_) => RideDetailScreen(),
+      //   );
       case eReceiptScreen:
         return MaterialPageRoute(
           settings: RouteSettings(name: eReceiptScreen),

@@ -16,7 +16,7 @@ class CreateNewAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Select Service'),
+      appBar: CustomAppBar(title: 'Select '),
       body: _buildBody(context),
     );
   }
@@ -74,10 +74,13 @@ class CreateNewAccountScreen extends StatelessWidget {
       onTap: () {
         if (type == GopherType.professional) {
           context.read<ServiceViewModel>().setGopherType(type);
+          print('professional');
+
           Navigator.pushNamed(context, deliveryFormScreen);
         } else if (type == GopherType.rider) {
           context.read<ServiceViewModel>().setGopherType(type);
           Navigator.pushNamed(context, newAccountOnboardingScreen);
+          print('Rider');
         }
       },
       borderRadius: BorderRadius.circular(10.r),

@@ -16,7 +16,7 @@ class CreateNewAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Select '),
+      appBar: CustomAppBar(title: 'Select Service'),
       body: _buildBody(context),
     );
   }

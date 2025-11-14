@@ -5,6 +5,7 @@ import '../../utils/assets.dart';
 import '../../utils/color_constant.dart';
 import '../../widgets/custom_appbar_home.dart';
 import '../../widgets/job_title.dart';
+import '../add_your_email_screen.dart';
 
 class HomeScreenPg extends StatelessWidget {
   const HomeScreenPg({super.key});
@@ -108,7 +109,15 @@ class HomeScreenPg extends StatelessWidget {
                                 ],
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          AddEmailYourScreen(),
+                                    ),
+                                  );
+                                },
                                 child: Text(
                                   'View All',
                                   style: TextStyle(
